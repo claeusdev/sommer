@@ -1,36 +1,47 @@
-## Sommer
+## `Sommer`
 
-The `Sommer` class is a utility for building JSON strings from Java objects using a builder pattern. Below is a step-by-step guide on how to use it:
+`Sommer` provides a convenient utility for building JSON strings from Java objects. The package ships with Jackson as a transitive dependency, so you don’t need to explicitly include it in your project.
 
 ---
 
 ### **1. Overview**
 
-The `Sommer` class provides a convenient way to:
-- Convert a list of Java objects into JSON strings.
-- Support both compact and pretty-printed JSON formats.
-- Encapsulate JSON data in a `Sommer` object for further use.
+`Sommer` package allows you to:
+- Convert Java objects into JSON strings.
+- Use either compact or pretty-printed JSON formats.
 
 ---
 
-### **2. Example Usage**
+### **2. Adding the Dependency**
 
-Here is a complete example of how to use the `Sommer` class:
-
-#### **Import Required Dependencies**
-Ensure you have Jackson in your project dependencies. Add the following Maven dependency if needed:
+To use `Sommer` in your project, add the following dependency to your **Maven** `pom.xml`:
 
 ```xml
 <dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>2.15.0</version>
+    <groupId>com.yourorg.sommer</groupId>
+    <artifactId>sommer</artifactId>
+    <version>1.0.0</version>
 </dependency>
 ```
+
+If you are using **Gradle**, add this to your `build.gradle`:
+
+```gradle
+implementation 'com.yourorg.sommer:sommer:1.0.0'
+```
+
+> **Note**: The Jackson library is included as a transitive dependency, so no additional configuration is needed for JSON processing.
+---
+
+### **3. Example Usage**
+
+Here is an example demonstrating how to use the `Sommer` package:
 
 #### **Step-by-Step Example**
 
 ```java
+import com.yourorg.sommer.Sommer;
+
 import java.util.List;
 import java.util.Arrays;
 
@@ -52,7 +63,7 @@ public class Main {
                 .build();                   // Build the Sommer instance
 
             // Step 3: Access the JSON string from the Sommer instance
-            System.out.println("Compact JSON:");
+            System.out.println("Pretty-Printed JSON:");
             System.out.println(sommer.getData());
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,22 +73,22 @@ public class Main {
 ```
 
 ---
-
-### **3. Class Details**
+<!--
+### **4. Class Details**
 
 #### **`Sommer` Class**
-- **Purpose**: Represents an encapsulated JSON object created through the builder.
+- **Purpose**: Encapsulates the JSON string generated from input data.
 - **Methods**:
   - `String getData()`: Retrieves the JSON string.
   - `void setData(String data)`: Allows manual modification of the JSON string.
 
 #### **`JSONBuilder` Class**
-- **Purpose**: A nested static builder class for constructing `Sommer` objects.
+- **Purpose**: A static nested builder class for constructing `Sommer` objects.
 - **Key Methods**:
-  - `JSONBuilder addData(List<Object> data)`: Adds data to be converted into JSON format.
-  - `JSONBuilder parseToJSON()`: Converts the added data into a JSON string (both compact and pretty-printed versions are supported).
+  - `JSONBuilder addData(List<Object> data)`: Adds data to be converted to JSON.
+  - `JSONBuilder parseToJSON()`: Converts the added data into a JSON string.
   - `Sommer build()`: Constructs and returns a `Sommer` instance.
-
+-->
 ---
 
 ### **4. Output Example**
@@ -100,16 +111,16 @@ Using the sample data from the example:
 ---
 
 ### **5. Error Handling**
-- If JSON parsing fails (e.g., due to invalid input data), a `JsonProcessingException` will be thrown. Ensure you handle this exception appropriately.
+- If the data cannot be converted to JSON (e.g., invalid input), the method `parseToJSON` will throw a `JsonProcessingException`. Ensure you handle this exception.
 
 ---
 
 ### **6. Future Enhancements**
-You can extend this class to:
-- Support additional data types.
-- Write JSON output to a file or stream.
-- Add validations for input data.
+This package can be extended to:
+- Write JSON output directly to files or streams.
+- Support additional data formats like XML or YAML.
+- Add validation logic for input data.
 
 ---
 
-With the `Sommer` class, you can quickly convert Java objects into well-formatted JSON strings for use in APIs, logs, or file outputs.
+The `Sommer` package simplifies JSON serialization while providing flexibility through the builder pattern. Get started with clean, pretty-printed JSON output in just a few lines of code!
