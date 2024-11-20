@@ -1,4 +1,4 @@
-## `Sommer`
+## `Sommer` (WIP)
 
 `Sommer` provides a convenient utility for building JSON strings from Java objects. The package ships with Jackson as a transitive dependency, so you don’t need to explicitly include it in your project.
 
