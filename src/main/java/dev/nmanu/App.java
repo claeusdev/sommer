@@ -1,10 +1,9 @@
 package dev.nmanu;
 
-import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
+import java.io.*;
 
 /*
  * Sommer: A simple object serializer
@@ -14,16 +13,10 @@ import java.util.List;
  */
 public class App {
 	public static void main(String[] args) throws IOException {
-		// String filename = "test.txt";
-		// if (args.length > 1) {
-		// filename = args[1];
-		// }
-		//
-		// readAllLines(filename);
-		//
 		Sommer.JSONBuilder builder = new Sommer.JSONBuilder();
-		Sommer s = builder.addData(new Integer[] { 1, 2, 3, 4, 5 }).build();
-		System.out.println("output: " + s);
+		Sommer s = builder.addData(List.of(new User("Nana", "Manu", 33), new User("Kwame", "Manu", 30)))
+				.parseToJSON().build();
+		System.out.println("output: " + s.getData());
 
 	}
 
